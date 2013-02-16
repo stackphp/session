@@ -25,10 +25,9 @@ Here's an example giving a silex app access to the session using stack/stack:
             return new RedirectResponse('/account');
         }
 
-        $response = new Response();
-        $response->headers->set('WWW-Authenticate', sprintf('Basic realm="%s"', 'site_login'));
-        $response->setStatusCode(401, 'Please sign in.');
-        return $response;
+        return new Response('Please sign in.', 401, [
+            'WWW-Authenticate' => sprintf('Basic realm="%s"', 'site_login'),
+        ]);
     });
 
     $app->get('/account', function (Request $request) {
@@ -38,7 +37,7 @@ Here's an example giving a silex app access to the session using stack/stack:
             return new RedirectResponse('/login');
         }
 
-        return "Welcome {$user['username']}!";
+        return sprintf('Welcome %s!', $user['username']);
     });
 
     $stack = (new Stack\Stack())
