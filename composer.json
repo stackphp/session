@@ -1,10 +1,4 @@
 {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/stackphp/stack"
-        }
-    ],
     "name": "stack/session",
     "description": "Session stack middleware.",
     "keywords": ["stack", "session"],
@@ -22,8 +16,8 @@
         "symfony/http-kernel": "~2.1"
     },
     "require-dev": {
-        "silex/silex": "1.0.*@dev",
-        "stack/stack": "dev-master",
+        "silex/silex": "~1.0@dev",
+        "stack/stack": "~1.0@dev",
         "symfony/browser-kit": "~2.1"
     },
     "autoload": {

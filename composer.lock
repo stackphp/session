@@ -1,5 +1,5 @@
 {
-    "hash": "4a1e76eb6342acd913886f921e41756c",
+    "hash": "95e035f8aac3fa1e5aa8a77f8fab33ab",
     "packages": [
         {
             "name": "pimple/pimple",
@@ -289,46 +289,49 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stackphp/stack.git",
-                "reference": "b8d3c74b405916b4436b323903cdcebc5048ae92"
+                "reference": "e00153c40d286c9e1b28f127cb5cfc09df22162e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stackphp/stack/zipball/b8d3c74b405916b4436b323903cdcebc5048ae92",
-                "reference": "b8d3c74b405916b4436b323903cdcebc5048ae92",
+                "url": "https://api.github.com/repos/stackphp/stack/zipball/e00153c40d286c9e1b28f127cb5cfc09df22162e",
+                "reference": "e00153c40d286c9e1b28f127cb5cfc09df22162e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
-                "symfony/http-foundation": "~2.1",
-                "symfony/http-kernel": "~2.1"
+                "symfony/http-foundation": ">=2.1,<3.0",
+                "symfony/http-kernel": ">=2.1,<3.0"
             },
             "require-dev": {
                 "silex/silex": "1.0.*@dev"
             },
-            "time": "2013-02-16 17:11:00",
+            "time": "2013-02-16 23:17:48",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Stack": "src"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
                     "name": "Igor Wiedler",
-                    "email": "igor@wiedler.ch"
+                    "email": "igor@wiedler.ch",
+                    "homepage": "http://wiedler.ch/igor/"
                 }
             ],
             "description": "Stack of middlewares based on HttpKernelInterface.",
             "keywords": [
                 "stack"
-            ],
-            "support": {
-                "source": "https://github.com/stackphp/stack/tree/master",
-                "issues": "https://github.com/stackphp/stack/issues"
-            }
+            ]
         },
         {
             "name": "symfony/browser-kit",
