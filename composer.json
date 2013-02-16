@@ -17,13 +17,14 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "pimple/pimple": "~1.0",
+        "pimple/pimple": "~1.0@dev",
         "symfony/http-foundation": "~2.1",
         "symfony/http-kernel": "~2.1"
     },
     "require-dev": {
         "silex/silex": "1.0.*@dev",
-        "stack/stack": "dev-master"
+        "stack/stack": "dev-master",
+        "symfony/browser-kit": "~2.1"
     },
     "autoload": {
         "psr-0": { "Stack": "src" }
