@@ -60,6 +60,10 @@ The following options can be used to configure stack/session:
 
 * **session.default_locale** (optional): The default locale, defaults to `en`.
 
+* **session.cookie_params** (optional): Override parameter values for the session cookie
+  as listed on [the PHP manual's session_get_cookie_params page](http://www.php.net/manual/en/function.session-get-cookie-params.php).
+  (allowed keys: `lifetime`, `path`, `domain`, `secure`, and `httponly`)
+
 ## Usage
 
 The session middleware enables the `Session` object on the request. You can
