@@ -39,11 +39,14 @@ class Session implements HttpKernelInterface
 
         if ($session && $session->isStarted()) {
             $session->save();
-            $params = session_get_cookie_params();
+            $params = array_merge(
+                session_get_cookie_params(),
+                $this->container['session.cookie_params']
+            );
             $cookie = new Cookie(
                 $session->getName(),
                 $session->getId(),
-                0 === $params['lifetime'] ? 0 : time() + $params['lifetime'],
+                0 === $params['lifetime'] ? 0 : $request->server->get('REQUEST_TIME') + $params['lifetime'],
                 $params['path'],
                 $params['domain'],
                 $params['secure'],

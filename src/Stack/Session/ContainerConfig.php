@@ -29,5 +29,6 @@ class ContainerConfig
         $container['session.storage.save_path'] = null;
         $container['session.storage.options'] = [];
         $container['session.default_locale'] = 'en';
+        $container['session.cookie_params'] = [];
     }
 }
