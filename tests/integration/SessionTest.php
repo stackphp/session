@@ -68,11 +68,9 @@ class SessionTest extends TestCase
     }
 
     /** @dataProvider provideOverrideSessionParams */
-    public function testOverrideSessionParams($expectedDomain, $expectedPath, $expectedSecure, $expectedHttponly, $expectedLifetime, $config)
+    public function testOverrideSessionParams($simulatedTime, $expectedDomain, $expectedPath, $expectedSecure, $expectedHttponly, $expectedExpire, $config)
     {
-        $serverRequestTime = null;
-        $app = new CallableHttpKernel(function (Request $request) use (&$serverRequestTime) {
-            $serverRequestTime = $request->server->get('REQUEST_TIME');
+        $app = new CallableHttpKernel(function (Request $request) {
             $request->getSession()->set('some_session_var', 'is set');
 
             return new Response('test');
@@ -81,7 +79,7 @@ class SessionTest extends TestCase
         $app = $this->sessionify($app, $config);
 
         $client = new Client($app);
-
+        $client->setServerParameters(array('REQUEST_TIME' => $simulatedTime));
         $client->request('GET', '/');
 
         $this->assertEquals('test', $client->getResponse()->getContent());
@@ -90,17 +88,6 @@ class SessionTest extends TestCase
         $this->assertCount(1, $cookies);
 
         $cookie = $cookies[0];
-
-        if (0 === $cookie->getExpiresTime()) {
-            // Special case for a Cookie with a 0 (zero) expires time, we want
-            // to just compare directly against the expected lifetime with no
-            // time calculation.
-            $expectedExpire = $expectedLifetime;
-        } else {
-            // In all other cases, we want to subtract the server request time
-            // from the expires time to see if it matches our expected lifetime.
-            $expectedExpire = $serverRequestTime + $expectedLifetime;
-        }
 
         $expectedCookie = new Cookie(
             $this->mockFileSessionStorage->getName(),
@@ -120,30 +107,32 @@ class SessionTest extends TestCase
 
     public function provideOverrideSessionParams()
     {
+        $simulatedTime = 1337882841;
+
         return [
-            ['example.com', '/test-path', true, true, 300, ['session.cookie_params' => [
+            [$simulatedTime, 'example.com', '/test-path', true, true, $simulatedTime + 300, ['session.cookie_params' => [
                 'lifetime' => 300,
                 'domain' => 'example.com',
                 'path' => '/test-path',
                 'secure' => true,
                 'httponly' => true,
             ]]],
-            ['example.com', '/', false, false, 0, ['session.cookie_params' => [
+            [$simulatedTime, 'example.com', '/', false, false, 0, ['session.cookie_params' => [
                 'domain' => 'example.com',
             ]]],
-            ['', '/test-path', false, false, 0, ['session.cookie_params' => [
+            [$simulatedTime, '', '/test-path', false, false, 0, ['session.cookie_params' => [
                 'path' => '/test-path',
             ]]],
-            ['', '/', true, false, 0, ['session.cookie_params' => [
+            [$simulatedTime, '', '/', true, false, 0, ['session.cookie_params' => [
                 'secure' => true,
             ]]],
-            ['', '/', false, true, 0, ['session.cookie_params' => [
+            [$simulatedTime, '', '/', false, true, 0, ['session.cookie_params' => [
                 'httponly' => true,
             ]]],
-            ['', '/', false, false, 300, ['session.cookie_params' => [
+            [$simulatedTime, '', '/', false, false, $simulatedTime + 300, ['session.cookie_params' => [
                 'lifetime' => 300,
             ]]],
-            ['', '/', false, false, -300, ['session.cookie_params' => [
+            [$simulatedTime, '', '/', false, false, $simulatedTime - 300, ['session.cookie_params' => [
                 'lifetime' => -300,
             ]]],
         ];
