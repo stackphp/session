@@ -157,11 +157,9 @@ class SessionTest extends \PHPUnit_Framework_TestCase
 
     private function sessionify(HttpKernelInterface $app, array $config = [])
     {
-        $mockFileSessionStorage = $this->mockFileSessionStorage;
-
         $config = array_merge([
-            'session.storage' => Pimple::share(function () use ($mockFileSessionStorage) {
-                return $mockFileSessionStorage;
+            'session.storage' => Pimple::share(function () {
+                return $this->mockFileSessionStorage;
             }),
         ], $config);
 
