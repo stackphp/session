@@ -15,6 +15,8 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class SessionTest extends TestCase
 {
+    const SIMULATED_TIME = 1337882841;
+
     public function testDefaultSetsNoCookies()
     {
         $app = new CallableHttpKernel(function (Request $request) {
@@ -68,7 +70,7 @@ class SessionTest extends TestCase
     }
 
     /** @dataProvider provideOverrideSessionParams */
-    public function testOverrideSessionParams($simulatedTime, $expectedDomain, $expectedPath, $expectedSecure, $expectedHttponly, $expectedExpire, $config)
+    public function testOverrideSessionParams($expectedDomain, $expectedPath, $expectedSecure, $expectedHttponly, $expectedExpire, $config)
     {
         $app = new CallableHttpKernel(function (Request $request) {
             $request->getSession()->set('some_session_var', 'is set');
@@ -79,7 +81,7 @@ class SessionTest extends TestCase
         $app = $this->sessionify($app, $config);
 
         $client = new Client($app);
-        $client->setServerParameters(array('REQUEST_TIME' => $simulatedTime));
+        $client->setServerParameters(array('REQUEST_TIME' => static::SIMULATED_TIME));
         $client->request('GET', '/');
 
         $this->assertEquals('test', $client->getResponse()->getContent());
@@ -107,34 +109,67 @@ class SessionTest extends TestCase
 
     public function provideOverrideSessionParams()
     {
-        $simulatedTime = 1337882841;
-
         return [
-            [$simulatedTime, 'example.com', '/test-path', true, true, $simulatedTime + 300, ['session.cookie_params' => [
-                'lifetime' => 300,
-                'domain' => 'example.com',
-                'path' => '/test-path',
-                'secure' => true,
-                'httponly' => true,
-            ]]],
-            [$simulatedTime, 'example.com', '/', false, false, 0, ['session.cookie_params' => [
-                'domain' => 'example.com',
-            ]]],
-            [$simulatedTime, '', '/test-path', false, false, 0, ['session.cookie_params' => [
-                'path' => '/test-path',
-            ]]],
-            [$simulatedTime, '', '/', true, false, 0, ['session.cookie_params' => [
-                'secure' => true,
-            ]]],
-            [$simulatedTime, '', '/', false, true, 0, ['session.cookie_params' => [
-                'httponly' => true,
-            ]]],
-            [$simulatedTime, '', '/', false, false, $simulatedTime + 300, ['session.cookie_params' => [
-                'lifetime' => 300,
-            ]]],
-            [$simulatedTime, '', '/', false, false, $simulatedTime - 300, ['session.cookie_params' => [
-                'lifetime' => -300,
-            ]]],
+            [
+                'example.com', '/test-path', true, true, static::SIMULATED_TIME + 300,
+                [
+                    'session.cookie_params' => [
+                        'lifetime' => 300,
+                        'domain' => 'example.com',
+                        'path' => '/test-path',
+                        'secure' => true,
+                        'httponly' => true,
+                    ]
+                ]
+            ],
+            [
+                'example.com', '/', false, false, 0,
+                [
+                    'session.cookie_params' => [
+                        'domain' => 'example.com',
+                    ]
+                ]
+            ],
+            [
+                '', '/test-path', false, false, 0,
+                [
+                    'session.cookie_params' => [
+                        'path' => '/test-path',
+                    ]
+                ]
+            ],
+            [
+                '', '/', true, false, 0,
+                [
+                    'session.cookie_params' => [
+                        'secure' => true,
+                    ]
+                ]
+            ],
+            [
+                '', '/', false, true, 0,
+                [
+                    'session.cookie_params' => [
+                        'httponly' => true,
+                    ]
+                ]
+            ],
+            [
+                '', '/', false, false, static::SIMULATED_TIME + 300,
+                [
+                    'session.cookie_params' => [
+                        'lifetime' => 300,
+                    ]
+                ]
+            ],
+            [
+                '', '/', false, false, static::SIMULATED_TIME - 300,
+                [
+                    'session.cookie_params' => [
+                        'lifetime' => -300,
+                    ]
+                ]
+            ],
         ];
     }
 }
