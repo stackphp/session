@@ -5,6 +5,7 @@ namespace integration;
 use Pimple;
 use Stack\CallableHttpKernel;
 use Stack\Session;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
@@ -56,11 +57,17 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $cookies);
 
         $cookie = $cookies[0];
-        $this->assertEquals('', $cookie->getDomain());
-        $this->assertEquals('/', $cookie->getPath());
-        $this->assertEquals(false, $cookie->isSecure());
-        $this->assertEquals(false, $cookie->isHttpOnly());
-        $this->assertEquals(0, $cookie->getExpiresTime());
+        $expectedCookie = new Cookie(
+            $this->mockFileSessionStorage->getName(),
+            $this->mockFileSessionStorage->getId(),
+            0,
+            '/',
+            '',
+            false,
+            false
+        );
+
+        $this->assertEquals($expectedCookie, $cookie);
 
         $bag = $this->mockFileSessionStorage->getBag('attributes');
         $this->assertEquals('is set', $bag->get('some_session_var'));
@@ -89,21 +96,29 @@ class SessionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(1, $cookies);
 
         $cookie = $cookies[0];
-        $this->assertEquals($expectedDomain, $cookie->getDomain());
-        $this->assertEquals($expectedPath, $cookie->getPath());
-        $this->assertEquals($expectedSecure, $cookie->isSecure());
-        $this->assertEquals($expectedHttponly, $cookie->isHttpOnly());
 
         if (0 === $cookie->getExpiresTime()) {
             // Special case for a Cookie with a 0 (zero) expires time, we want
             // to just compare directly against the expected lifetime with no
             // time calculation.
-            $this->assertEquals($expectedLifetime, $cookie->getExpiresTime());
+            $expectedExpire = $expectedLifetime;
         } else {
             // In all other cases, we want to subtract the server request time
             // from the expires time to see if it matches our expected lifetime.
-            $this->assertEquals($expectedLifetime, $cookie->getExpiresTime() - $serverRequestTime);
+            $expectedExpire = $serverRequestTime + $expectedLifetime;
         }
+
+        $expectedCookie = new Cookie(
+            $this->mockFileSessionStorage->getName(),
+            $this->mockFileSessionStorage->getId(),
+            $expectedExpire,
+            $expectedPath,
+            $expectedDomain,
+            $expectedSecure,
+            $expectedHttponly
+        );
+
+        $this->assertEquals($expectedCookie, $cookie);
 
         $bag = $this->mockFileSessionStorage->getBag('attributes');
         $this->assertEquals('is set', $bag->get('some_session_var'));
