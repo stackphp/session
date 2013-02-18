@@ -2,6 +2,7 @@
 
 namespace functional;
 
+use common\AbstractTestCase;
 use Pimple;
 use Silex\Application;
 use Stack\Session;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpKernel\Client;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /* Taken from silex SessionServiceProviderTest */
-class SilexApplicationTest extends \PHPUnit_Framework_TestCase
+class SilexApplicationTest extends AbstractTestCase
 {
     public function testWithSessionRoutes()
     {
@@ -83,14 +84,5 @@ class SilexApplicationTest extends \PHPUnit_Framework_TestCase
 
         $client->request('GET', '/robots.txt');
         $this->assertEquals('Informations for robots.', $client->getResponse()->getContent());
-    }
-
-    private function sessionify(HttpKernelInterface $app)
-    {
-        return new Session($app, [
-            'session.storage' => Pimple::share(function () {
-                return new MockFileSessionStorage();
-            }),
-        ]);
     }
 }
