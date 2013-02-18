@@ -7,7 +7,7 @@ use Stack\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
+abstract class TestCase extends \PHPUnit_Framework_TestCase
 {
     protected $mockFileSessionStorage;
 

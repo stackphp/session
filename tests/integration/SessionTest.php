@@ -2,7 +2,7 @@
 
 namespace integration;
 
-use common\AbstractTestCase;
+use common\TestCase;
 use Pimple;
 use Stack\CallableHttpKernel;
 use Stack\Session;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
 use Symfony\Component\HttpKernel\Client;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-class SessionTest extends AbstractTestCase
+class SessionTest extends TestCase
 {
     public function testDefaultSetsNoCookies()
     {

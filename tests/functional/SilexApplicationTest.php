@@ -2,7 +2,7 @@
 
 namespace functional;
 
-use common\AbstractTestCase;
+use common\TestCase;
 use Pimple;
 use Silex\Application;
 use Stack\Session;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Client;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /* Taken from silex SessionServiceProviderTest */
-class SilexApplicationTest extends AbstractTestCase
+class SilexApplicationTest extends TestCase
 {
     public function testWithSessionRoutes()
     {
