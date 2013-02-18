@@ -1,5 +1,5 @@
 {
-    "hash": "ac3fb935029d41c5f6148cece6fd6177",
+    "hash": "65661c7e539db23846f58dc78611ef3b",
     "packages": [
         {
             "name": "pimple/pimple",
@@ -284,6 +284,53 @@
             ]
         },
         {
+            "name": "stack/callable-http-kernel",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stackphp/CallableHttpKernel.git",
+                "reference": "2967bc04d3d7c498507b4cc7fc416cb4abf6eb68"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stackphp/CallableHttpKernel/zipball/2967bc04d3d7c498507b4cc7fc416cb4abf6eb68",
+                "reference": "2967bc04d3d7c498507b4cc7fc416cb4abf6eb68",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/http-foundation": ">=2.1,<3.0",
+                "symfony/http-kernel": ">=2.1,<3.0"
+            },
+            "time": "2013-02-17 02:22:46",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Stack": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch",
+                    "homepage": "http://wiedler.ch/igor/"
+                }
+            ],
+            "description": "HttpKernelInterface implementation based on callables.",
+            "keywords": [
+                "stack"
+            ]
+        },
+        {
             "name": "stack/stack",
             "version": "dev-master",
             "source": {
@@ -492,6 +539,7 @@
     "stability-flags": {
         "pimple/pimple": 20,
         "silex/silex": 20,
-        "stack/stack": 20
+        "stack/stack": 20,
+        "stack/callable-http-kernel": 20
     }
 }
