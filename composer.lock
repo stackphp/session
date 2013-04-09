@@ -1,24 +1,27 @@
 {
-    "hash": "65661c7e539db23846f58dc78611ef3b",
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "8e052d0c992498c7378c19f17354dcde",
     "packages": [
         {
             "name": "pimple/pimple",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git://github.com/fabpot/Pimple.git",
-                "reference": "5a8936d9d31eb613f1a33753e5f22bffebe0bbc3"
+                "url": "https://github.com/fabpot/Pimple.git",
+                "reference": "v1.0.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/5a8936d9d31eb613f1a33753e5f22bffebe0bbc3",
-                "reference": "5a8936d9d31eb613f1a33753e5f22bffebe0bbc3",
+                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/v1.0.2",
+                "reference": "v1.0.2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2013-02-09 15:33:26",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -45,38 +48,81 @@
             "keywords": [
                 "container",
                 "dependency injection"
-            ]
+            ],
+            "time": "2013-03-08 08:21:40"
         },
         {
-            "name": "symfony/event-dispatcher",
-            "version": "v2.1.7",
-            "target-dir": "Symfony/Component/EventDispatcher",
+            "name": "psr/log",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/EventDispatcher",
-                "reference": "v2.1.7"
+                "url": "https://github.com/php-fig/log",
+                "reference": "1.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/EventDispatcher/archive/v2.1.7.zip",
-                "reference": "v2.1.7",
+                "url": "https://github.com/php-fig/log/archive/1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "symfony/event-dispatcher",
+            "version": "v2.2.1",
+            "target-dir": "Symfony/Component/EventDispatcher",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/EventDispatcher.git",
+                "reference": "v2.2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/v2.2.1",
+                "reference": "v2.2.1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "symfony/dependency-injection": "2.1.*"
+                "symfony/dependency-injection": ">=2.0,<3.0"
             },
             "suggest": {
-                "symfony/dependency-injection": "2.1.*",
-                "symfony/http-kernel": "2.1.*"
+                "symfony/dependency-injection": "2.2.*",
+                "symfony/http-kernel": "2.2.*"
             },
-            "time": "2013-01-11 00:31:43",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\EventDispatcher": ""
+                    "Symfony\\Component\\EventDispatcher\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -94,33 +140,40 @@
                 }
             ],
             "description": "Symfony EventDispatcher Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-02-11 11:26:43"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v2.1.7",
+            "version": "v2.2.1",
             "target-dir": "Symfony/Component/HttpFoundation",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/HttpFoundation",
-                "reference": "v2.1.7"
+                "url": "https://github.com/symfony/HttpFoundation.git",
+                "reference": "v2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/HttpFoundation/archive/v2.1.7.zip",
-                "reference": "v2.1.7",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/v2.2.1",
+                "reference": "v2.2.1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
-            "time": "2013-01-11 00:31:43",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\HttpFoundation": "",
-                    "SessionHandlerInterface": "Symfony/Component/HttpFoundation/Resources/stubs"
-                }
+                    "Symfony\\Component\\HttpFoundation\\": ""
+                },
+                "classmap": [
+                    "Symfony/Component/HttpFoundation/Resources/stubs"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -137,51 +190,58 @@
                 }
             ],
             "description": "Symfony HttpFoundation Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-04-06 10:15:43"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v2.1.7",
+            "version": "v2.2.1",
             "target-dir": "Symfony/Component/HttpKernel",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/HttpKernel",
-                "reference": "v2.1.7"
+                "url": "https://github.com/symfony/HttpKernel.git",
+                "reference": "v2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/v2.1.7",
-                "reference": "v2.1.7",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/v2.2.1",
+                "reference": "v2.2.1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/event-dispatcher": "2.1.*",
-                "symfony/http-foundation": "2.1.*"
+                "psr/log": ">=1.0,<2.0",
+                "symfony/event-dispatcher": ">=2.1,<3.0",
+                "symfony/http-foundation": ">=2.2,<2.3-dev"
             },
             "require-dev": {
-                "symfony/browser-kit": "2.1.*",
-                "symfony/class-loader": "2.1.*",
-                "symfony/config": "2.1.*",
-                "symfony/console": "2.1.*",
-                "symfony/dependency-injection": "2.1.*",
-                "symfony/finder": "2.1.*",
-                "symfony/process": "2.1.*",
-                "symfony/routing": "2.1.*"
+                "symfony/browser-kit": "2.2.*",
+                "symfony/class-loader": ">=2.1,<3.0",
+                "symfony/config": ">=2.0,<3.0",
+                "symfony/console": "2.2.*",
+                "symfony/dependency-injection": ">=2.0,<3.0",
+                "symfony/finder": ">=2.0,<3.0",
+                "symfony/process": ">=2.0,<3.0",
+                "symfony/routing": ">=2.2,<2.3-dev",
+                "symfony/stopwatch": ">=2.2,<2.3-dev"
             },
             "suggest": {
-                "symfony/browser-kit": "2.1.*",
-                "symfony/class-loader": "2.1.*",
-                "symfony/config": "2.1.*",
-                "symfony/console": "2.1.*",
-                "symfony/dependency-injection": "2.1.*",
-                "symfony/finder": "2.1.*"
+                "symfony/browser-kit": "2.2.*",
+                "symfony/class-loader": "2.2.*",
+                "symfony/config": "2.2.*",
+                "symfony/console": "2.2.*",
+                "symfony/dependency-injection": "2.2.*",
+                "symfony/finder": "2.2.*"
             },
-            "time": "2013-01-17 16:21:47",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\HttpKernel": ""
+                    "Symfony\\Component\\HttpKernel\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -199,7 +259,8 @@
                 }
             ],
             "description": "Symfony HttpKernel Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-04-06 10:16:33"
         }
     ],
     "packages-dev": [
@@ -208,13 +269,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git://github.com/fabpot/Silex.git",
-                "reference": "c421eab3c4ca9d106cc5b68266d58adece8636cd"
+                "url": "https://github.com/fabpot/Silex.git",
+                "reference": "80f0abd669b2c615b73065b76c63ff27c7d3c38d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/c421eab3c4ca9d106cc5b68266d58adece8636cd",
-                "reference": "c421eab3c4ca9d106cc5b68266d58adece8636cd",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/80f0abd669b2c615b73065b76c63ff27c7d3c38d",
+                "reference": "80f0abd669b2c615b73065b76c63ff27c7d3c38d",
                 "shasum": ""
             },
             "require": {
@@ -227,13 +288,14 @@
             },
             "require-dev": {
                 "doctrine/dbal": ">=2.2.0,<2.4.0-dev",
+                "monolog/monolog": ">=1.4,<2.0,>=1.4.1",
                 "swiftmailer/swiftmailer": "4.2.*",
                 "symfony/browser-kit": ">=2.1,<2.3-dev",
                 "symfony/config": ">=2.1,<2.3-dev",
                 "symfony/css-selector": ">=2.1,<2.3-dev",
                 "symfony/dom-crawler": ">=2.1,<2.3-dev",
                 "symfony/finder": ">=2.1,<2.3-dev",
-                "symfony/form": ">=2.1,<2.3-dev",
+                "symfony/form": ">=2.1.4,<2.3-dev",
                 "symfony/locale": ">=2.1,<2.3-dev",
                 "symfony/monolog-bridge": ">=2.1,<2.3-dev",
                 "symfony/options-resolver": ">=2.1,<2.3-dev",
@@ -248,9 +310,9 @@
             "suggest": {
                 "symfony/browser-kit": ">=2.1,<2.3-dev",
                 "symfony/css-selector": ">=2.1,<2.3-dev",
-                "symfony/dom-crawler": ">=2.1,<2.3-dev"
+                "symfony/dom-crawler": ">=2.1,<2.3-dev",
+                "symfony/form": "To make use of the FormServiceProvider, >= 2.1.4 is required"
             },
-            "time": "2013-02-13 11:44:19",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -281,7 +343,58 @@
             "homepage": "http://silex.sensiolabs.org",
             "keywords": [
                 "microframework"
-            ]
+            ],
+            "time": "2013-04-08 20:37:52"
+        },
+        {
+            "name": "stack/builder",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stackphp/builder.git",
+                "reference": "70365024b607c0c1fd1bad010bb7b9a202cefe87"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stackphp/builder/zipball/70365024b607c0c1fd1bad010bb7b9a202cefe87",
+                "reference": "70365024b607c0c1fd1bad010bb7b9a202cefe87",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/http-foundation": ">=2.1,<3.0",
+                "symfony/http-kernel": ">=2.1,<3.0"
+            },
+            "require-dev": {
+                "silex/silex": "1.0.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Stack": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch",
+                    "homepage": "http://wiedler.ch/igor/"
+                }
+            ],
+            "description": "Builder for stack middlewares based on HttpKernelInterface.",
+            "keywords": [
+                "stack"
+            ],
+            "time": "2013-04-09 15:42:07"
         },
         {
             "name": "stack/callable-http-kernel",
@@ -302,7 +415,6 @@
                 "symfony/http-foundation": ">=2.1,<3.0",
                 "symfony/http-kernel": ">=2.1,<3.0"
             },
-            "time": "2013-02-17 02:22:46",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -328,89 +440,44 @@
             "description": "HttpKernelInterface implementation based on callables.",
             "keywords": [
                 "stack"
-            ]
-        },
-        {
-            "name": "stack/stack",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stackphp/stack.git",
-                "reference": "e00153c40d286c9e1b28f127cb5cfc09df22162e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stackphp/stack/zipball/e00153c40d286c9e1b28f127cb5cfc09df22162e",
-                "reference": "e00153c40d286c9e1b28f127cb5cfc09df22162e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "symfony/http-foundation": ">=2.1,<3.0",
-                "symfony/http-kernel": ">=2.1,<3.0"
-            },
-            "require-dev": {
-                "silex/silex": "1.0.*@dev"
-            },
-            "time": "2013-02-16 23:17:48",
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Stack": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
             ],
-            "authors": [
-                {
-                    "name": "Igor Wiedler",
-                    "email": "igor@wiedler.ch",
-                    "homepage": "http://wiedler.ch/igor/"
-                }
-            ],
-            "description": "Stack of middlewares based on HttpKernelInterface.",
-            "keywords": [
-                "stack"
-            ]
+            "time": "2013-02-17 02:22:46"
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v2.1.7",
+            "version": "v2.2.1",
             "target-dir": "Symfony/Component/BrowserKit",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/BrowserKit",
-                "reference": "v2.1.7"
+                "url": "https://github.com/symfony/BrowserKit.git",
+                "reference": "v2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/v2.1.7",
-                "reference": "v2.1.7",
+                "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/v2.2.1",
+                "reference": "v2.2.1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "symfony/dom-crawler": "2.1.*"
+                "symfony/dom-crawler": ">=2.0,<3.0"
             },
             "require-dev": {
-                "symfony/css-selector": "2.1.*",
-                "symfony/process": "2.1.*"
+                "symfony/css-selector": ">=2.0,<3.0",
+                "symfony/process": ">=2.0,<3.0"
             },
             "suggest": {
-                "symfony/process": "2.1.*"
+                "symfony/process": "2.2.*"
             },
-            "time": "2013-01-09 08:51:07",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\BrowserKit": ""
+                    "Symfony\\Component\\BrowserKit\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -428,37 +495,42 @@
                 }
             ],
             "description": "Symfony BrowserKit Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-03-15 10:14:31"
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v2.1.7",
+            "version": "v2.2.1",
             "target-dir": "Symfony/Component/DomCrawler",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/DomCrawler",
-                "reference": "v2.1.7"
+                "url": "https://github.com/symfony/DomCrawler.git",
+                "reference": "v2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/v2.1.7",
-                "reference": "v2.1.7",
+                "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/v2.2.1",
+                "reference": "v2.2.1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "symfony/css-selector": "2.1.*"
+                "symfony/css-selector": ">=2.0,<3.0"
             },
             "suggest": {
-                "symfony/css-selector": "2.1.*"
+                "symfony/css-selector": "2.2.*"
             },
-            "time": "2013-01-09 08:51:07",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\DomCrawler": ""
+                    "Symfony\\Component\\DomCrawler\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -476,42 +548,47 @@
                 }
             ],
             "description": "Symfony DomCrawler Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-04-01 08:05:23"
         },
         {
             "name": "symfony/routing",
-            "version": "v2.1.7",
+            "version": "v2.2.1",
             "target-dir": "Symfony/Component/Routing",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Routing",
-                "reference": "v2.1.7"
+                "url": "https://github.com/symfony/Routing.git",
+                "reference": "v2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Routing/zipball/v2.1.7",
-                "reference": "v2.1.7",
+                "url": "https://api.github.com/repos/symfony/Routing/zipball/v2.2.1",
+                "reference": "v2.2.1",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "doctrine/common": ">=2.2,<2.4-dev",
-                "symfony/config": "2.1.*",
-                "symfony/http-kernel": "2.1.*",
-                "symfony/yaml": "2.1.*"
+                "doctrine/common": ">=2.2,<3.0",
+                "psr/log": ">=1.0,<2.0",
+                "symfony/config": ">=2.2,<2.3-dev",
+                "symfony/yaml": ">=2.0,<3.0"
             },
             "suggest": {
-                "doctrine/common": ">=2.2,<2.4-dev",
-                "symfony/config": "2.1.*",
-                "symfony/yaml": "2.1.*"
+                "doctrine/common": "~2.2",
+                "symfony/config": "2.2.*",
+                "symfony/yaml": "2.2.*"
             },
-            "time": "2013-01-09 08:51:07",
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
-                    "Symfony\\Component\\Routing": ""
+                    "Symfony\\Component\\Routing\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -529,7 +606,8 @@
                 }
             ],
             "description": "Symfony Routing Component",
-            "homepage": "http://symfony.com"
+            "homepage": "http://symfony.com",
+            "time": "2013-03-23 12:03:22"
         }
     ],
     "aliases": [
@@ -539,7 +617,13 @@
     "stability-flags": {
         "pimple/pimple": 20,
         "silex/silex": 20,
-        "stack/stack": 20,
+        "stack/builder": 20,
         "stack/callable-http-kernel": 20
-    }
+    },
+    "platform": {
+        "php": ">=5.4.0"
+    },
+    "platform-dev": [
+
+    ]
 }

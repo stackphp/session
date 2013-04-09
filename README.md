@@ -40,7 +40,7 @@ Here's an example giving a silex app access to the session using stack/stack:
         return sprintf('Welcome %s!', $user['username']);
     });
 
-    $stack = (new Stack\Stack())
+    $stack = (new Stack\Builder())
         ->push('Stack\Session');
 
     $app = $stack->resolve($app);

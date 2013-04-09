@@ -34,7 +34,7 @@ $app->get('/account', function (Request $request) {
     return sprintf('Welcome %s!', $user['username']);
 });
 
-$stack = (new Stack\Stack())
+$stack = (new Stack\Builder())
     ->push('Stack\Session');
 
 $app = $stack->resolve($app);
