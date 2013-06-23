@@ -61,7 +61,7 @@ class SilexApplicationTest extends TestCase
         $this->assertEquals('You are not logged in.', $client->getResponse()->getContent());
     }
 
-    public function testWithRoutesThatDoesNotUseSession()
+    public function testWithRoutesThatDoNotUseSession()
     {
         $app = new Application();
 
