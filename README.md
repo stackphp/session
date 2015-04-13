@@ -8,42 +8,44 @@ Enables the request session for subsequent middlewares.
 
 Here's an example giving a silex app access to the session using stack/stack:
 
-    use Symfony\Component\HttpFoundation\Request;
-    use Symfony\Component\HttpFoundation\Response;
-    use Symfony\Component\HttpFoundation\RedirectResponse;
+```php
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
-    $app = new Silex\Application();
+$app = new Silex\Application();
 
-    $app->get('/login', function (Request $request) {
-        $session = $request->getSession();
+$app->get('/login', function (Request $request) {
+    $session = $request->getSession();
 
-        $username = $request->server->get('PHP_AUTH_USER');
-        $password = $request->server->get('PHP_AUTH_PW');
+    $username = $request->server->get('PHP_AUTH_USER');
+    $password = $request->server->get('PHP_AUTH_PW');
 
-        if ('igor' === $username && 'password' === $password) {
-            $session->set('user', array('username' => $username));
-            return new RedirectResponse('/account');
-        }
+    if ('igor' === $username && 'password' === $password) {
+        $session->set('user', array('username' => $username));
+        return new RedirectResponse('/account');
+    }
 
-        return new Response('Please sign in.', 401, [
-            'WWW-Authenticate' => sprintf('Basic realm="%s"', 'site_login'),
-        ]);
-    });
+    return new Response('Please sign in.', 401, [
+        'WWW-Authenticate' => sprintf('Basic realm="%s"', 'site_login'),
+    ]);
+});
 
-    $app->get('/account', function (Request $request) {
-        $session = $request->getSession();
+$app->get('/account', function (Request $request) {
+    $session = $request->getSession();
 
-        if (null === $user = $session->get('user')) {
-            return new RedirectResponse('/login');
-        }
+    if (null === $user = $session->get('user')) {
+        return new RedirectResponse('/login');
+    }
 
-        return sprintf('Welcome %s!', $user['username']);
-    });
+    return sprintf('Welcome %s!', $user['username']);
+});
 
-    $stack = (new Stack\Builder())
-        ->push('Stack\Session');
+$stack = (new Stack\Builder())
+    ->push('Stack\Session');
 
-    $app = $stack->resolve($app);
+$app = $stack->resolve($app);
+```
 
 ## Options
 
@@ -69,11 +71,13 @@ The following options can be used to configure stack/session:
 The session middleware enables the `Session` object on the request. You can
 access it through the `Request` object:
 
-    $session = $request->getSession();
+```php
+$session = $request->getSession();
 
-    $session->start();
-    $foo = $session->get('foo');
-    $session->set('foo', 'bar');
+$session->start();
+$foo = $session->get('foo');
+$session->set('foo', 'bar');
+```
 
 ## Silex SessionServiceProvider
 
@@ -81,9 +85,11 @@ Note that this middleware is a replacement for the silex
 SessionServiceProvider. If you want to use it with silex, you might want to
 define the `session` service as follows:
 
-    $app['session'] = $app->share(function ($app) {
-        return $app['request']->getSession();
-    });
+```php
+$app['session'] = $app->share(function ($app) {
+    return $app['request']->getSession();
+});
+```
 
 This is only needed if you have services that depend on the `session` service.
 
